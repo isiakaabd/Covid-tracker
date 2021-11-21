@@ -1,8 +1,9 @@
 import React from 'react';
-import { Card, Typography, CardContent, Grid } from '@mui/material';
+import { Card, Typography, CardContent, CardMedia, Grid } from '@mui/material';
 import CountUp from 'react-countup';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@mui/styles';
+import Images from 'components/assests';
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -10,28 +11,44 @@ const useStyles = makeStyles((theme) => ({
     '&.MuiGrid-root': {
       '& .MuiCard-root': {
         '&.Deaths': {
-          borderBottom: '10px solid rgba(75,192,192,1)',
+          borderBottom: '10px solid rgba(255,0,0,0.5)',
         },
         '&.Infected': {
           borderBottom: '10px solid rgba(75,192,192,0.2)',
         },
 
         '&.Recovered': {
-          borderBottom: '10px solid rgba(75,0,0,0.2)',
+          borderBottom: '10px solid  rgba(0,255,0,1)',
         },
       },
     },
   },
+  icon: {
+    '&.MuiCardMedia-img': {
+      width: '3rem',
+      height: '3rem',
+      color: 'red',
+    },
+  },
 }));
+
 const CardItem = ({ data, name, lastUpdate }) => {
+  const { recovered, death, infected } = Images; // importing images
   const classes = useStyles();
   return (
     <Grid item container md={3} sm={12} width="100%" className={classes.cardGrid}>
       <Card className={name} sx={{ width: '100%' }}>
         <CardContent>
-          <Typography gutterBottom variant="h3">
-            {name}
-          </Typography>
+          <Grid container alignItems="center" gap={2}>
+            <Typography component="div" variant="h3">
+              {name}
+            </Typography>
+            <CardMedia
+              component="img"
+              image={name === 'Deaths' ? death : name === 'Infected' ? infected : recovered}
+              className={classes.icon}
+            />
+          </Grid>
           <CountUp start={0} end={data.value} duration={5} separator="," className="countUp" />
 
           <Typography gutterBottom variant="h6">

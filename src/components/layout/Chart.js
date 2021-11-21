@@ -28,11 +28,10 @@ const Chart = ({ DailyData, country, data: { confirmed, deaths, recovered } }) =
     datasets: [
       {
         label: 'People',
-        backgroundColor: ['rgba(75,192,192,0.2)', 'rgba(75,192,192,.5)', 'rgba(75,0,0,0.2)'],
+        backgroundColor: ['rgba(75,192,192,0.2)', 'rgba(255,0,0,0.5)', 'rgba(0,255,0,1)'],
         data: [confirmed.value, deaths.value, recovered.value],
         borderColor: 'rgba(75,192,192,1)',
       },
-      //   options,
     ],
   };
   const options = {
@@ -58,7 +57,7 @@ const Chart = ({ DailyData, country, data: { confirmed, deaths, recovered } }) =
 
 Chart.propTypes = {
   DailyData: PropTypes.array.isRequired,
-  country: PropTypes.string,
+  country: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   data: PropTypes.object.isRequired,
 };
 export default Chart;

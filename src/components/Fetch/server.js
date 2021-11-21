@@ -19,6 +19,8 @@ export const fetchData = async (country) => {
     return error.message;
   }
 };
+
+// Daily Data
 export const fetchDailyData = async () => {
   try {
     const { data } = await axios.get(`${url}/daily`);

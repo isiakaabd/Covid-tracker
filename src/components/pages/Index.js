@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Grid } from '@mui/material';
-import image from 'components/assests/image.png';
-import CardItem from 'components/layout/Card';
-import error from 'components/assests/error.jpeg';
-import SelectComponent from 'components/layout/SelectComponent';
+import { Grid, Alert } from '@mui/material';
+import Images from 'components/assests';
+import { CardItem, SelectComponent, Chart, Circular } from 'components/layout';
 import { fetchData, fetchDailyData, fetchCountries } from 'components/Fetch/server';
-import Chart from 'components/layout/Chart';
-import Circular from 'components/layout/Circular';
 
 const Index = () => {
   const [Data, setData] = useState(null);
@@ -27,8 +23,6 @@ const Index = () => {
       isCancelled = true;
     };
   }, []);
-
-  //
 
   useEffect(() => {
     let isCancelled = false;
@@ -72,13 +66,32 @@ const Index = () => {
   const TimeOutError = 'timeout exceeded';
   const AbortError = 'Request aborted';
 
+  const { error, image } = Images; // importing image files
   if (Data && countries && Data !== NetworkError && Data !== TimeOutError && Data !== AbortError) {
     const { lastUpdate, confirmed, deaths, recovered } = Data;
     return (
-      <Grid direction="column" container width="90%" margin="auto" rowSpacing={4}>
+      <Grid
+        direction="column"
+        container
+        width="90%"
+        margin="auto"
+        rowSpacing={4}
+        justifyContent="center"
+      >
         <Grid item md={4} sm={10} margin="auto">
           <img src={image} style={{ width: '100%', objectFit: 'contain' }} />
         </Grid>
+        <Grid item md={4} sm={10} margin="auto">
+          <Alert
+            variant="filled"
+            severity="error"
+            sx={{ fontSize: '1.4rem', alignItems: 'center' }}
+          >
+            The number of recovered cases are not reported. The API for the statistics is under
+            maintenance
+          </Alert>
+        </Grid>
+
         <Grid item container rowSpacing={3} justifyContent="space-evenly">
           <CardItem name="Infected" lastUpdate={lastUpdate} data={confirmed} />
           <CardItem name="Deaths" lastUpdate={lastUpdate} data={deaths} />

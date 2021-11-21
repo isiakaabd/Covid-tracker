@@ -5,11 +5,10 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    // 'plugin:import/recommended',
-    "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended",
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:prettier/recommended',
   ],
 
   parserOptions: {
@@ -17,12 +16,11 @@ module.exports = {
       jsx: true,
     },
     ecmaVersion: 13,
-    sourceType: "module",
+    sourceType: 'module',
   },
-  plugins: ["react", "prettier"],
+  plugins: ['react', 'prettier'],
   rules: {
-    "no-unused-vars": ["warn", { args: "none", argsIgnorePattern: "req|res|next|val" }],
-    "prettier/prettier": ["warn"],
-    // "import/no-unresolved": [2, { caseSensitive: false }],
- },
+    'no-unused-vars': ['warn', { args: 'none', argsIgnorePattern: 'req|res|next|val' }],
+    'prettier/prettier': ['warn'],
+  },
 };

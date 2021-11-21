@@ -17,12 +17,12 @@ const SelectComponent = ({ handleChange, selectedOption, options }) => {
   return (
     <Title>
       <Select
-        value={selectedOption}
+        defaultValue={selectedOption}
         onChange={handleChange}
         options={options}
-        defaultValue={options[0]}
         placeholder="Select Country"
         styles={customStyles}
+        name="countrySelect"
       />
     </Title>
   );
