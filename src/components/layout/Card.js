@@ -36,10 +36,10 @@ const CardItem = ({ data, name, lastUpdate }) => {
   const { recovered, death, infected } = Images; // importing images
   const classes = useStyles();
   return (
-    <Grid item container md={3} sm={12} width="100%" className={classes.cardGrid}>
+    <Grid item container md={3.5} sm={12} width="100%" className={classes.cardGrid}>
       <Card className={name} sx={{ width: '100%' }}>
         <CardContent>
-          <Grid container alignItems="center" gap={2}>
+          <Grid container alignItems="center" gap={2} flexWrap="nowrap">
             <Typography component="div" variant="h3">
               {name}
             </Typography>
