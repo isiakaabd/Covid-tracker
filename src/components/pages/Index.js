@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import image from 'components/assests/image.png';
 import CardItem from 'components/layout/Card';
 import error from 'components/assests/error.jpeg';
 import SelectComponent from 'components/layout/SelectComponent';
 import { fetchData, fetchDailyData, fetchCountries } from 'components/Fetch/server';
 import Chart from 'components/layout/Chart';
+import Circular from 'components/layout/Circular';
 
 const Index = () => {
   const [Data, setData] = useState(null);
@@ -69,8 +70,9 @@ const Index = () => {
   //  the ApI have 200 for all status codes, to avoid throwing error when there's no network
   const NetworkError = 'Network Error';
   const TimeOutError = 'timeout exceeded';
+  const AbortError = 'Request aborted';
 
-  if (Data && countries && Data !== NetworkError && Data !== TimeOutError) {
+  if (Data && countries && Data !== NetworkError && Data !== TimeOutError && Data !== AbortError) {
     const { lastUpdate, confirmed, deaths, recovered } = Data;
     return (
       <Grid direction="column" container width="90%" margin="auto" rowSpacing={4}>
@@ -96,8 +98,8 @@ const Index = () => {
     );
   } else {
     return (
-      <Grid container justifyContent="center">
-        {Data === NetworkError ? (
+      <Grid container justifyContent="center" alignItems="center" sx={{ height: '100vh' }}>
+        {Data === NetworkError || Data === AbortError ? (
           <Grid item container>
             <img
               src={error}
@@ -105,10 +107,8 @@ const Index = () => {
             />
           </Grid>
         ) : (
-          <Grid item justifyContent="center">
-            <Typography color="error" variant="h2" textAlign="center">
-              Loading
-            </Typography>
+          <Grid item>
+            <Circular />
           </Grid>
         )}
       </Grid>
