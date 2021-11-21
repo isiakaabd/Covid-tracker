@@ -4,4 +4,8 @@ This project was created to Track the incidence of global pandemic (Covid-19). T
 
 
 
-You can view this on https:// 
+You can view this on https://covidtrackerapp2021.netlify.app
+
+
+Thanks for reading through. Don't forget to star the repo and suggestions will be welcomed.
+
