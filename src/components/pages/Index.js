@@ -103,9 +103,7 @@ const Index = () => {
           </Grid>
         </Grid>
         <Grid item container>
-          <Grid item container margin="auto" justifyContent="center">
-            <Chart DailyData={DailyData} country={country} data={Data} />
-          </Grid>
+          <Chart DailyData={DailyData} country={country} data={Data} />
         </Grid>
       </Grid>
     );

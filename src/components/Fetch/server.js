@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const defaultValue = {
   value: '',
-  label: 'global',
+  label: 'Global',
 };
 
 export const fetchData = async (country) => {
@@ -49,4 +49,14 @@ export const fetchCountries = async () => {
     console.log(error);
     return error.message;
   }
+};
+
+export const Roundnumber = (number) => {
+  const symbol = ['', 'K', 'M', 'G', 'T', 'P', 'E'];
+  const tier = (Math.log10(Math.abs(number)) / 3) | 0;
+  if (tier == 0) return number;
+  const suffix = symbol[tier];
+  const scale = Math.pow(10, tier * 3);
+  const scaled = number / scale;
+  return scaled.toFixed(1) + suffix;
 };
